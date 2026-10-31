@@ -267,10 +267,11 @@
           <div class="zona"><div class="zt" style="color:#13833c">Σ Métrica</div><small>Serve para <b>somar/contar</b>: Valor total, Quantidade.</small></div>
         </div>
         <p style="margin-top:12px">Você pode ajustar o <b>nome de exibição</b>, o <b>tipo</b> e o <b>papel</b> de qualquer coluna. Quando estiver certo, clique em <span class="btn primario">Confirmar campos</span> para abrir o construtor de cubos.</p>
+        <div class="callout dica"><span class="ic">📅</span><div><b>Formato da data.</b> Quando uma coluna é do tipo <b>Data</b>, aparece logo abaixo um seletor de <b>formato de exibição</b>: <code>dd/mm/aaaa</code>, <code>dd/mm/aaaa hh:mm:ss</code>, <code>aaaa-mm-dd</code> e outros. Escolha como quer <i>ver</i> a data — e fique tranquilo: ela <b>continua sendo data</b>, ou seja, continua ordenando em <b>ordem cronológica</b> e gerando os campos (Ano)/(Mês)/(Ano-Mês) certinho.</div></div>
       </li>
     </ol>
 
-    <div class="callout atencao"><span class="ic">⚠️</span><div><b>Códigos não são números.</b> CEP, CPF, código de cliente ou “007” parecem número, mas você nunca vai <i>somar</i> um CEP. O programa já deixa esses casos como <b>Dimensão</b> — mantenha assim. Só devem ser <b>Métrica</b> as colunas que faz sentido somar ou tirar média.</div></div>
+    <div class="callout atencao"><span class="ic">⚠️</span><div><b>Códigos não são números.</b> CEP, CPF, código de cliente ou “007” parecem número, mas você nunca vai <i>somar</i> um CEP. O programa já deixa esses casos como <b>Dimensão</b> — mantenha assim. Só devem ser <b>Métrica</b> as colunas que faz sentido somar ou tirar média. <br><small style="color:var(--muted)">Precisa mesmo <i>somar</i> (ou tirar média, mínimo…) um campo numérico que ficou como Dimensão? Sem problema: no cubo, você ainda consegue <b>arrastá-lo para Métricas</b> assim mesmo.</small></div></div>
   </section>
 
   <!-- 3B - FONTE DE BANCO (MySQL / SQL Server / PostgreSQL) -->
@@ -300,6 +301,11 @@
       <li>Escreva sua consulta <b>SELECT</b> na caixa de SQL e clique em <span class="btn primario">Trazer para o cubo</span>.</li>
       <li>Os registros caem na <b>mesma tela de conferência de campos</b> que você já conhece (tipo e papel de cada coluna). Ajuste se quiser e clique em <span class="btn primario">Confirmar campos</span>. Pronto — o cubo está montado sobre os dados do banco.</li>
     </ol>
+
+    <h3>A janela de consulta — um mini-editor de SQL</h3>
+    <p>A caixa onde você escreve o <b>SELECT</b> é um <b>editor com cores</b>: palavras-chave, textos e números ganham destaque, como num editor de verdade — ajuda a escrever e a revisar. No cabeçalho da caixa há o botão <span class="btn">⤢ maior</span>, que <b>amplia a janela</b> e deixa o editor ocupar quase a tela inteira (ótimo para consultas grandes); clique de novo (<span class="btn">⤢ restaurar</span>) para voltar ao tamanho normal.</p>
+    <div class="callout atencao"><span class="ic">⚠️</span><div><b>Consulta sem <code>WHERE</code>?</b> Se você mandar um <code>SELECT</code> sem filtro, o programa <b>avisa</b> que ele pode trazer muitas linhas e pergunta se quer continuar. É só um lembrete — você decide: <b>OK</b> para seguir mesmo assim, ou <b>Cancelar</b> para incluir um <code>WHERE</code> antes.</div></div>
+    <div class="callout dica"><span class="ic">✏️</span><div><b>Mudou a consulta depois?</b> Já na tela do cubo, o botão <span class="btn">🔎 Editar consulta</span> (na barra de cima — aparece quando os dados vieram de um banco) reabre a janela <b>já preenchida</b> com a sua conexão e a consulta atuais, inclusive a <b>senha</b> (guardada só na memória <i>da sessão</i>, nunca em disco). Ajuste o SQL, clique em <b>Aplicar consulta</b> e o cubo recalcula — e, se as colunas continuarem as mesmas, ele até <b>mantém a sua montagem</b>.</div></div>
 
     <div class="callout dica"><span class="ic">💡</span><div><b>Quer experimentar sem ter um banco pronto?</b> Na pasta <code>data</code> do programa há três scripts de exemplo: <code>vendas_exemplo_mySql.sql</code> (MySQL), <code>vendas_exemplo_sqlServer.sql</code> (SQL Server) e <code>vendas_exemplo_postgres.sql</code> (PostgreSQL). Rode o do seu banco — ele cria as tabelas <code>vendedor</code>, <code>produto</code>, <code>cliente</code> e <code>venda</code> com as 400 vendas do exemplo. Depois, use esta consulta (vale nos três) para reproduzir exatamente o cubo deste manual:</div></div>
     <pre class="cmd">SELECT v.data_venda, vd.nome AS vendedor, p.nome AS produto,
@@ -343,7 +349,7 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
     <h3>Atualizar e salvar</h3>
     <ul>
       <li><b>Atualizar dados</b> (&#128260;, na barra do cubo) <b>re-executa a consulta</b> e traz os registros mais recentes do banco — perfeito quando os dados mudam ao longo do dia. A <b>data da última carga</b> aparece ali do lado.</li>
-      <li><b>Salvar cubo</b> guarda a sua consulta e os dados da conexão (tipo de banco, servidor, usuário, banco) — mas <b>nunca a senha</b>. Ao reabrir, o programa pede a senha de novo para reconectar (na <i>Autenticação do Windows</i> não precisa: ele usa o seu login). Assim, seu acesso ao banco fica seguro mesmo que você compartilhe o arquivo <code>.cubo</code>.</li>
+      <li><b>Salvar cubo</b> guarda a montagem, a sua consulta, os dados da conexão (tipo de banco, servidor, usuário, banco) <b>e os próprios dados</b> daquela carga — mas <b>nunca a senha</b>. Por isso, ao <b>reabrir</b>, o cubo aparece na hora com os dados salvos, <b>sem pedir senha e sem reconsultar o banco</b>. A senha só é pedida quando você clica em <b>Atualizar dados</b> para buscar os registros mais recentes (na <i>Autenticação do Windows</i> nem isso: ele usa o seu login). Assim seu acesso ao banco fica seguro mesmo que você compartilhe o <code>.cubo</code>.</li>
     </ul>
 
     <div class="callout atencao"><span class="ic">⚠️</span><div><b>Consulta muito grande?</b> Se o SELECT trouxer um volume enorme de linhas, o cubo carrega as primeiras e avisa — refine com um <code>WHERE</code> (ou <code>LIMIT</code> no MySQL e no PostgreSQL / <code>TOP</code> no SQL Server) para trazer só o que interessa. Cubos ficam mais rápidos e claros com os dados já filtrados na origem.</div></div>
@@ -382,7 +388,10 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
     <div class="callout dica"><span class="ic">💡</span><div>Um campo <b>pode ficar em Linhas (ou Colunas) e em Filtros ao mesmo tempo</b>. É assim que você diz "<i>quebre por Vendedor, mas mostre só estes vendedores</i>": ponha <b>Vendedor</b> em Linhas <b>e</b> em Filtros, e no filtro desmarque quem não quer ver. (O que não combina é o mesmo campo em <b>Linhas e Colunas</b> juntas — aí ele troca de lugar.)</div></div>
 
     <h3>Datas já vêm “fatiadas”</h3>
-    <p>Ao confirmar os campos, cada coluna de <b>data</b> ganha automaticamente três campos extras: <span class="chip">(Ano)</span> <span class="chip">(Mês)</span> <span class="chip">(Ano-Mês)</span>. Assim você agrupa por período sem precisar mexer na planilha original.</p>
+    <p>Ao confirmar os campos, cada coluna de <b>data</b> ganha automaticamente três campos extras: <span class="chip">(Ano)</span> <span class="chip">(Mês)</span> <span class="chip">(Ano-Mês)</span>. Assim você agrupa por período sem precisar mexer na planilha original. E, em qualquer área, as datas aparecem em <b>ordem cronológica</b> — não alfabética.</p>
+
+    <h3>Mais espaço para a análise</h3>
+    <p>Com o cubo montado e você querendo <b>só olhar o resultado</b>, clique em <span class="btn">▲ Esconder configuração</span> (na barra de cima): as áreas de campos somem e a tabela ganha a tela toda. Para mexer de novo, clique em <span class="btn">▼ Mostrar configuração</span>. E logo acima da barra, o <b>nome do cubo</b> em edição fica sempre à vista — ou <i>“cubo não salvo”</i> enquanto você ainda não salvou.</p>
 
     <div class="callout dica"><span class="ic">💡</span><div>Com pressa? O botão <span class="btn">Cenário do exemplo</span> monta uma análise inicial sozinho, para você ver o cubo funcionando. E <span class="btn">Limpar áreas</span> zera tudo para começar do seu jeito.</div></div>
   </section>
@@ -428,14 +437,18 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
     </ol>
     <div class="callout dica"><span class="ic">💡</span><div><b>Exemplos que valem ouro:</b> <i>Preço médio</i> = <b>Valor total ÷ Quantidade</b>; <i>Margem %</i> = <b>(Valor total − Custo) ÷ Valor total × 100</b>; <i>Ticket médio</i> = <b>Valor total ÷ Contagem de pedidos</b>. <br><b>O pulo do gato está no total:</b> o cubo refaz a conta <i>em cada célula</i> — linha, subtotal e total. Por isso o total é a média <b>ponderada</b> (ex.: receita total ÷ unidades totais), e <i>não</i> a média solta das linhas.</div></div>
 
+    <h3>Modo relatório: ver os registros, sem somar</h3>
+    <p>Nem toda análise precisa de soma. Às vezes você quer só <b>listar os registros</b>, como um relatório. Para isso, <b>não coloque nada em Métricas</b>: arraste as colunas que quer para <b>Linhas</b> (ex.: <i>Data da venda, Vendedor, Produto</i>) e o cubo mostra <b>cada registro</b>, exatamente como você escolheu, sem agrupar nada. Assim que você adicionar uma <b>métrica</b>, ele volta a somar normalmente.</p>
+    <div class="callout dica"><span class="ic">📋</span><div>No relatório, clique no <b>cabeçalho de uma coluna</b> para ordenar por ela (uma vez A→Z, de novo Z→A), com datas em ordem cronológica. É a listagem completa — sem limite de linhas.</div></div>
+
     <h3>Salvar, reabrir e atualizar o seu cubo</h3>
     <p>Montou um cubo que vale a pena guardar? Na barra de cima há três botões para isso:</p>
     <div class="zonas" style="grid-template-columns:repeat(3,1fr)">
-      <div class="zona"><div class="zt">&#128190; Salvar cubo</div><small>Abre a janela <b>Salvar como</b> do Windows — você escolhe o <b>nome</b> e a <b>pasta</b>. Guarda a <b>montagem</b> (linhas, colunas, filtros, métricas e fórmulas) num arquivo <code>.cubo</code> levinho: a <i>receita</i>, não os dados. Ao salvar, aparece embaixo <i>onde</i> ele foi guardado.</small></div>
-      <div class="zona"><div class="zt">&#128193; Abrir cubo</div><small>Abre um <code>.cubo</code> salvo: remonta tudo <b>e</b> relê os dados da origem. Dá para abrir já na tela inicial, em <span class="btn">Abrir cubo salvo</span>.</small></div>
-      <div class="zona"><div class="zt">&#128260; Atualizar dados</div><small>Relê a planilha de origem e <b>recalcula</b> — ideal quando o arquivo ganhou vendas novas. A montagem continua igualzinha.</small></div>
+      <div class="zona"><div class="zt">&#128190; Salvar cubo</div><small>Abre a janela <b>Salvar como</b> do Windows — você escolhe o <b>nome</b> e a <b>pasta</b>. Guarda a <b>montagem</b> (linhas, colunas, filtros, métricas e fórmulas) <b>e os próprios dados</b> daquela carga num arquivo <code>.cubo</code>. Ao salvar, aparece embaixo <i>onde</i> ele foi guardado.</small></div>
+      <div class="zona"><div class="zt">&#128193; Abrir cubo</div><small>Abre um <code>.cubo</code> salvo e mostra os dados <b>na hora</b>, do jeito que estavam — <b>sem reler a planilha nem reconsultar o banco</b> (funciona até se o arquivo saiu do lugar). Dá para abrir já na tela inicial, em <span class="btn">Abrir cubo salvo</span>.</small></div>
+      <div class="zona"><div class="zt">&#128260; Atualizar dados</div><small>Quando quiser os números <b>mais recentes</b>, relê a origem (a planilha ou o banco) e <b>recalcula</b> — a montagem continua igualzinha. É a única ação que troca a data da carga.</small></div>
     </div>
-    <div class="callout dica"><span class="ic">💡</span><div>No canto direito da barra aparece <b>Última carga: dia/mês/ano hora</b> — o momento em que os dados foram lidos pela última vez. Assim você sempre sabe se está olhando números fresquinhos ou de uma carga antiga. <br><small style="color:var(--muted)">O arquivo <code>.cubo</code> aponta para o <i>caminho</i> da planilha original; se você mover a planilha de lugar, reimporte e salve o cubo de novo.</small></div></div>
+    <div class="callout dica"><span class="ic">💡</span><div>No canto direito da barra aparece <b>Última carga: dia/mês/ano hora</b> — o momento em que os dados foram <i>realmente</i> lidos da origem. Ela <b>não muda</b> quando você só reabre o cubo (são os mesmos dados que você salvou); <b>só muda</b> quando você clica em <b>Atualizar dados</b>. Assim você sempre sabe se está olhando números fresquinhos ou de uma carga antiga. <br><small style="color:var(--muted)">Como o <code>.cubo</code> agora guarda os dados dentro dele, o arquivo fica <b>maior</b> — em compensação, abre instantâneo e é autossuficiente.</small></div></div>
   </section>
 
   <!-- 6 -->
@@ -449,6 +462,18 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
       <div class="box"><div class="n">3 ·</div><div class="l"><b>O que mudou?</b> Olhando mês a mês nas colunas, o que subiu e o que caiu?</div></div>
     </div>
     <p>É exatamente isso que o próximo caso prático mostra, passo a passo.</p>
+
+    <h3>Ordenar com um clique no cabeçalho</h3>
+    <p>Para achar “quem concentra”, ordene a tabela — basta clicar nos <b>cabeçalhos</b>. Clique uma vez para uma direção, de novo para a outra; a setinha <b>▲▼</b> mostra qual ordem está valendo:</p>
+    <ul>
+      <li>no <b>nome da dimensão</b> de linha (ex.: <i>Vendedor</i>) → ordena as linhas <b>pelo rótulo</b>, de A→Z ou Z→A. Datas saem em ordem cronológica e números na ordem numérica, não como texto;</li>
+      <li>no <b>cabeçalho de uma métrica</b> (ex.: <i>Soma de Valor</i>) → ordena as linhas <b>por aquele número</b>, do maior para o menor (ou o contrário). Se a métrica estiver dentro de uma coluna — por exemplo um mês específico — a ordem respeita aquela coluna.</li>
+    </ul>
+    <div class="callout dica"><span class="ic">🖱️</span><div>Linhas <b>e</b> colunas são ordenáveis. Clique no cabeçalho que te interessa e deixe o maior valor subir para o topo — é a forma mais rápida de responder “quem concentra?”.</div></div>
+
+    <h3>Filtrar valores — com busca</h3>
+    <p>Clique no <span class="chip">chip</span> de um campo na área <b>Filtros</b> para abrir a janela de valores. Quando o campo tem muitos valores, aparece um campo de <b>busca</b>: digite parte do que procura (ex.: <i>Curitiba</i>) e a lista vai filtrando enquanto você digita.</p>
+    <div class="callout dica"><span class="ic">🔎</span><div>A regra é simples: <b>deixe marcados só os valores que você quer ver</b> no cubo e clique em <b>Aplicar</b>. Para escolher poucos itens, o caminho mais rápido é clicar em <b>Nenhum</b> (desmarca tudo), buscar e marcar só o que interessa. Os botões <b>Todos</b> e <b>Nenhum</b> valem para a lista inteira, mesmo com uma busca ativa na tela.</div></div>
   </section>
 
   <!-- 7 - CASO -->
@@ -609,6 +634,7 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
     <p>O gráfico desenha o que está na tabela: o que está em <b>Linhas</b> vira os <b>rótulos</b> (uma barra/fatia/ponto para cada um) e o que está em <b>Colunas</b> vira as <b>cores</b>. Por isso, pondo o <b>Mês em Colunas</b> e escolhendo <b>Linhas</b>, você vê a <b>receita de cada mês</b> — e enxerga na hora se está subindo ou caindo.</p>
     <h3>Levar para o Excel</h3>
     <p>Use <span class="btn">Exportar Excel</span> para gerar uma planilha <code>.xlsx</code> já formatada (cabeçalho em duas linhas, subtotais e total em negrito), ou <span class="btn">Exportar CSV</span> para um arquivo simples. O que estiver na tela é o que será exportado.</p>
+    <div class="callout dica"><span class="ic">💾</span><div>Ao exportar para Excel, o programa abre a caixa <b>“Salvar como”</b> do Windows: você escolhe a pasta e o nome do arquivo e sabe exatamente onde ele foi parar. Nada de procurar depois onde o download caiu.</div></div>
     <div class="callout certo"><span class="ic">✅</span><div>Dica de apresentação: exporte a tabela do caso acima em barras com o Mês nas colunas. Em uma reunião, o gráfico de evolução conta a história sozinho.</div></div>
   </section>
 
