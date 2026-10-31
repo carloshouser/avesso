@@ -1,0 +1,16 @@
+# O que NÃO deve ir para o repositório do site.
+# As pessoas baixam o programa pelo Avesso.zip — os arquivos do app
+# não precisam ficar soltos aqui.
+
+# Pasta do app e seus componentes, caso sejam copiados para cá por engano
+/Avesso/
+/_internal/
+/Avesso.exe
+/Abrir no navegador.bat
+
+# Logs e temporários gerados ao testar o programa
+*.log
+ultimo_inicio.log
+
+# Arquivos antigos de distribuição
+/Avesso.rar
