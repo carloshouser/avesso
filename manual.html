@@ -233,11 +233,43 @@
   <!-- 2 -->
   <section id="abrir" class="card">
     <h2><span class="kicker">02</span> Abrir o programa</h2>
-    <p class="lead">O programa abre em uma janela própria no Windows. Você não precisa de internet.</p>
-    <p>Abra a pasta do programa e execute:</p>
-    <div class="cmd"><span class="c"># na pasta C:\doCarlos\cubo</span><br>vm\Scripts\python.exe app.py</div>
-    <p>Uma janela se abre direto na tela <b>Importação</b>. É por aqui que todo trabalho começa.</p>
-    <div class="callout dica"><span class="ic">💡</span><div>Quer só experimentar antes de usar dados de verdade? Toda a tela de importação tem um botão <span class="btn">Carregar exemplo</span> com uma planilha de vendas pronta. Vamos usá-la neste manual.</div></div>
+    <p class="lead">O Avesso abre em uma <b>janela própria no Windows</b> — como qualquer programa. Não precisa instalar nada e não precisa de internet.</p>
+    <ol class="passos">
+      <li><h4>Descompacte o arquivo</h4><p>Abra o <code>Avesso.zip</code> que você baixou e extraia para uma pasta à sua escolha. Vai aparecer uma pasta chamada <code>Avesso</code>.</p></li>
+      <li><h4>Dê um duplo-clique no <code>Avesso.exe</code></h4><p>Dentro da pasta <code>Avesso</code>, é só clicar duas vezes no programa.</p></li>
+      <li><h4>Pronto: a tela de Importação abre</h4><p>Uma janela se abre direto na tela <b>Importação</b>. É por aqui que todo trabalho começa.</p></li>
+    </ol>
+
+    <h3>Na primeira vez: o aviso azul do Windows</h3>
+    <p>Por ser um programa novo (ainda sem assinatura digital paga), na <b>primeira</b> vez o Windows pode mostrar uma tela azul de segurança, o <b>Defender SmartScreen</b>. É <b>normal e seguro</b> — é o seu próprio programa. Para liberar, são dois cliques:</p>
+    <div class="callout atencao"><span class="ic">🛡️</span><div>Clique em <b>“Mais informações”</b> e depois no botão <b>“Executar assim mesmo”</b>. O Avesso abre e você só precisa fazer isso <b>uma vez</b> por computador.</div></div>
+    <figure class="gfx">
+      <svg viewBox="0 0 600 340" role="img" aria-label="Tela azul do Windows SmartScreen: passo 1 clicar em Mais informações, passo 2 clicar em Executar assim mesmo">
+        <rect x="24" y="16" width="552" height="308" rx="12" fill="#ffffff" stroke="#c9ced8" stroke-width="2"/>
+        <g transform="translate(52,44)">
+          <path d="M19 0 L38 7 V24 C38 37 29 47 19 51 C9 47 0 37 0 24 V7 Z" fill="#2b6fd6"/>
+          <path d="M10 25 l6 6 l13 -15" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <text x="112" y="58" font-family="Segoe UI, system-ui, sans-serif" font-size="21" font-weight="700" fill="#1b2330">O Windows protegeu o seu computador</text>
+        <text x="112" y="86" font-family="Segoe UI, system-ui, sans-serif" font-size="14" fill="#55606f">O Microsoft Defender SmartScreen impediu que um</text>
+        <text x="112" y="106" font-family="Segoe UI, system-ui, sans-serif" font-size="14" fill="#55606f">aplicativo não reconhecido fosse iniciado.</text>
+        <line x1="52" y1="132" x2="548" y2="132" stroke="#edf0f5" stroke-width="2"/>
+        <circle cx="64" cy="170" r="14" fill="#e8491d"/>
+        <text x="64" y="175" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#ffffff">1</text>
+        <text x="88" y="176" font-family="Segoe UI, sans-serif" font-size="16" font-weight="700" fill="#1f6feb" text-decoration="underline">Mais informações</text>
+        <text x="238" y="176" font-family="Segoe UI, sans-serif" font-size="13.5" font-weight="600" fill="#a23c18">← clique aqui primeiro</text>
+        <rect x="236" y="250" width="196" height="46" rx="7" fill="#eaf1fc" stroke="#2b6fd6" stroke-width="2.5"/>
+        <text x="334" y="279" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#15223a">Executar assim mesmo</text>
+        <rect x="446" y="250" width="110" height="46" rx="7" fill="#f2f4f8" stroke="#c9ced8" stroke-width="1.5"/>
+        <text x="501" y="279" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="14" fill="#55606f">Não executar</text>
+        <circle cx="236" cy="250" r="14" fill="#e8491d"/>
+        <text x="236" y="255" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="15" font-weight="700" fill="#ffffff">2</text>
+        <text x="64" y="279" font-family="Segoe UI, sans-serif" font-size="13.5" font-weight="600" fill="#a23c18">depois, este botão →</text>
+      </svg>
+      <figcaption>O botão <b>“Executar assim mesmo”</b> só aparece <b>depois</b> que você clica em “Mais informações”.</figcaption>
+    </figure>
+
+    <div class="callout dica"><span class="ic">💡</span><div>Prefere usar no <b>navegador</b> (mais leve)? Dê um duplo-clique no <code>Abrir no navegador.bat</code> — veja a seção <b>10</b>. E para só experimentar, toda a tela de importação tem um botão <span class="btn">Carregar exemplo</span> com uma planilha de vendas pronta. Vamos usá-la neste manual.</div></div>
   </section>
 
   <!-- 3 -->
@@ -656,15 +688,16 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
       <div class="modo">
         <div class="modo-tag alt">Mais leve</div>
         <h3>🌐 No navegador</h3>
-        <p>Duplo-clique no <code>abrir_no_navegador.bat</code> — ele liga o servidor e <b>abre o seu navegador</b> no Avesso, sozinho.</p>
+        <p>Duplo-clique no <code>Abrir no navegador.bat</code> — ele liga o servidor e <b>abre o seu navegador</b> no Avesso, sozinho.</p>
         <ul>
           <li>Funciona em <b>Chrome, Edge ou Firefox</b> e gasta <b>menos memória</b> (ótimo para PCs mais modestos).</li>
+          <li>Enquanto está aberto, aparece um <b>ícone do Avesso na bandeja</b> (ao lado do relógio): <b>clique nele</b> para reabrir a aba no navegador, ou use o menu <b>Encerrar o Avesso</b> para fechar o programa.</li>
           <li><b>Única diferença:</b> o navegador não abre a caixa de arquivos do Windows — então você <b>cola o caminho</b> do <code>.csv</code> (ou usa <span class="btn">Carregar exemplo</span>); salvar e abrir cubo usam o download e o seletor do próprio navegador. O resto é idêntico.</li>
         </ul>
       </div>
     </div>
 
-    <div class="callout dica"><span class="ic">💡</span><div><b>Qual usar?</b> Para a experiência de aplicativo, abra o <b><code>Avesso.exe</code></b>. Se o computador tem <b>pouca memória</b> ou você prefere o navegador, use o <b><code>abrir_no_navegador.bat</code></b>. As duas formas fazem exatamente o mesmo trabalho.</div></div>
+    <div class="callout dica"><span class="ic">💡</span><div><b>Qual usar?</b> Para a experiência de aplicativo, abra o <b><code>Avesso.exe</code></b>. Se o computador tem <b>pouca memória</b> ou você prefere o navegador, use o <b><code>Abrir no navegador.bat</code></b>. As duas formas fazem exatamente o mesmo trabalho.</div></div>
 
     <div class="callout certo"><span class="ic">🔒</span><div>Nos dois modos, tudo roda <b>dentro do seu computador</b> (endereço <code>127.0.0.1</code>, a própria máquina): <b>não precisa de internet</b> e <b>nenhum dado sai do PC</b> — nem a planilha, nem os resultados.</div></div>
 
@@ -699,8 +732,8 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
     </div>
     <p>É por isso que ele funciona tanto como aplicativo quanto no navegador: a “vitrine” é a mesma página; só muda a moldura em volta dela.</p>
 
-    <h3>O que tem na pasta <code>vm</code></h3>
-    <p>A <code>vm</code> é um <b>ambiente isolado</b> (“máquina virtual” do Python, cerca de 160 MB). Pense nela como uma <b>caixa fechada</b> que guarda o Python e todas as peças do programa <b>sem bagunçar o resto do computador</b>. Se um dia você apagar essa caixa, nada mais no Windows é afetado. Dentro dela:</p>
+    <h3>O que vem junto no programa</h3>
+    <p>Tudo o que o Avesso precisa — o Python e todas as peças — vem <b>embutido na própria pasta do programa</b> (na subpasta <code>_internal</code>). Pense nela como uma <b>caixa fechada</b>: nada é instalado no Windows e <b>nada bagunça o resto do computador</b>. Se um dia você apagar a pasta do Avesso, nada mais no sistema é afetado. Dentro dela:</p>
     <div class="tbl-wrap">
       <table class="data">
         <thead><tr><th>Peça</th><th style="text-align:left">Para que serve, em bom português</th></tr></thead>
@@ -716,6 +749,7 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
           <tr><td style="text-align:left"><b>python-tds</b></td><td style="text-align:left">Faz o mesmo para o <b>SQL Server</b> (fala o protocolo TDS direto, Python puro, sem ODBC).</td></tr>
           <tr><td style="text-align:left"><b>pg8000</b></td><td style="text-align:left">E para o <b>PostgreSQL</b> (driver 100% Python, sem ODBC nem bibliotecas externas).</td></tr>
           <tr><td style="text-align:left"><b>pythonnet</b></td><td style="text-align:left">A “ponte” que deixa o Python conversar com o Windows para abrir a janela.</td></tr>
+          <tr><td style="text-align:left"><b>pystray</b></td><td style="text-align:left">Mostra o <b>ícone do Avesso na bandeja</b> (ao lado do relógio) quando você usa no modo navegador.</td></tr>
         </tbody>
       </table>
     </div>
@@ -723,7 +757,7 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
     <h3>Especificações técnicas</h3>
     <div class="kv">
       <div class="box"><div class="n">Windows 11</div><div class="l">Sistema operacional (usa o Edge/WebView2 já incluído)</div></div>
-      <div class="box"><div class="n">Python 3.14</div><div class="l">Instalado dentro da pasta <code>vm</code> (~160 MB)</div></div>
+      <div class="box"><div class="n">Python 3.14</div><div class="l">Vem embutido no programa (não instala nada no Windows)</div></div>
       <div class="box"><div class="n">127.0.0.1</div><div class="l">Roda só na sua máquina, sem rede e sem internet</div></div>
       <div class="box"><div class="n">.csv → .xlsx</div><div class="l">Entra planilha CSV; sai tabela, gráfico, Excel e CSV</div></div>
     </div>
