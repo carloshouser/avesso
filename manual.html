@@ -269,7 +269,7 @@
       <figcaption>O botão <b>“Executar assim mesmo”</b> só aparece <b>depois</b> que você clica em “Mais informações”.</figcaption>
     </figure>
 
-    <div class="callout dica"><span class="ic">💡</span><div>Prefere usar no <b>navegador</b> (mais leve)? Dê um duplo-clique no <code>Abrir no navegador.bat</code> — veja a seção <b>10</b>. E para só experimentar, toda a tela de importação tem um botão <span class="btn">Carregar exemplo</span> com uma planilha de vendas pronta. Vamos usá-la neste manual.</div></div>
+    <div class="callout dica"><span class="ic">💡</span><div>Prefere usar no <b>navegador</b> (mais leve)? Dê um duplo-clique no <code>Abrir no navegador.bat</code> — veja a seção <b>10</b>. E para só experimentar, toda a tela de importação tem um botão <span class="btn">Carregar exemplo</span> com uma planilha de vendas pronta. Vamos usá-la neste manual. Essa planilha também está como arquivo na pasta <code>data</code>, <b>ao lado do programa</b> — junto com um <b>cubo de exemplo pronto</b> (<code>.cubo</code>, que mostra como dois vendedores chegam a um faturamento parecido com <i>esforços</i> bem diferentes) e os <b>scripts SQL</b> de exemplo, caso queira abri-los direto.</div></div>
   </section>
 
   <!-- 3 -->
@@ -692,7 +692,7 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
         <ul>
           <li>Funciona em <b>Chrome, Edge ou Firefox</b> e gasta <b>menos memória</b> (ótimo para PCs mais modestos).</li>
           <li>Enquanto está aberto, aparece um <b>ícone do Avesso na bandeja</b> (ao lado do relógio): <b>clique nele</b> para reabrir a aba no navegador, ou use o menu <b>Encerrar o Avesso</b> para fechar o programa.</li>
-          <li><b>Única diferença:</b> o navegador não abre a caixa de arquivos do Windows — então você <b>cola o caminho</b> do <code>.csv</code> (ou usa <span class="btn">Carregar exemplo</span>); salvar e abrir cubo usam o download e o seletor do próprio navegador. O resto é idêntico.</li>
+          <li><b>Única diferença:</b> ao clicar em <span class="btn">Selecionar arquivo…</span>, abre o <b>seletor de arquivos do próprio navegador</b> (em vez do do Windows); salvar e abrir cubo também usam o download e o seletor do navegador. O resto é idêntico.</li>
         </ul>
       </div>
     </div>
@@ -767,6 +767,8 @@ JOIN cliente  c  ON c.id  = v.cliente_id;</pre>
   <!-- 11 -->
   <section id="duvidas" class="card">
     <h2><span class="kicker">12</span> Dúvidas rápidas</h2>
+    <h3>Cliquei para abrir e apareceu “O Avesso já está aberto”</h3>
+    <p>Ele já está rodando — o Avesso mantém só uma cópia aberta de propósito, para não deixar o computador lento. No modo <b>navegador</b>, mesmo que você tenha fechado a aba, ele continua ativo com um <b>ícone na bandeja do Windows</b> (ao lado do relógio): <b>clique nesse ícone</b> para abrir a aba de novo — não precisa de outra cópia. No modo <b>aplicativo</b>, a janela pode estar <b>minimizada</b> ou atrás de outra. Para fechar de vez, use <b>Encerrar o Avesso</b> no menu da bandeja (ou feche a janela).</p>
     <h3>Os acentos apareceram errados (Ã©, Ã§)</h3>
     <p>É a codificação. Na importação, troque <b>Codificação</b> para <code>Windows-1252</code> ou <code>UTF-8 (com BOM)</code> e clique em <b>Analisar</b> de novo.</p>
     <h3>Os valores viraram texto / não somam</h3>
